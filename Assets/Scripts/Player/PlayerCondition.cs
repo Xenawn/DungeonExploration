@@ -24,10 +24,13 @@ public class PlayerCondition : MonoBehaviour
     public void HealStamina(float amount)
     {
         stamina.Add(amount);
-        CharacterManager.Instance.Player.controller.moveSpeed *= 3; // 속력이 3배로 빨라짐
+        StartCoroutine(SpeedUp()); // 코루틴 실행
     }
 
-   
+    IEnumerator SpeedUp()
+    {
+        yield return CharacterManager.Instance.Player.controller.moveSpeed *= 3; // 속력이 3배로 빨라짐
+    }
 
     public void Die()
     {
