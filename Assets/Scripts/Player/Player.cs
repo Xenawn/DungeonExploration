@@ -6,22 +6,12 @@ public class Player : MonoBehaviour
 {
     // Start is called before the first frame update
     public PlayerController controller;
-    Animator animator;
-
+    public PlayerCondition condition;
     private void Awake()
     {
         CharacterManager.Instance.Player = this;
         controller = GetComponent<PlayerController>();
-        animator = GetComponent<Animator>();
+        condition = GetComponent<PlayerCondition>();
     }
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 }
