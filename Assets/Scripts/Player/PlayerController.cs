@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.InputSystem;
@@ -20,10 +21,11 @@ public class PlayerController : MonoBehaviour
     public float lookSensitivity; // 카메라 민감도
 
     private Vector2 mouseDelta;  // 마우스 변화값
- 
+    public bool canLook = true;
+    public Action inventroy;
+
 
     [HideInInspector]
-    public bool canLook = true;
 
     private Rigidbody rigidbody;
     private Animator animatior;
@@ -42,6 +44,7 @@ public class PlayerController : MonoBehaviour
   
     private void LateUpdate()
     {
+        
         if (canLook)
         {
             CameraLook();
@@ -133,6 +136,22 @@ public class PlayerController : MonoBehaviour
     public void ToggleCursor(bool toggle)
     {
         Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
+        canLook = !toggle;
+    }
+
+    public void OnInventory(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            inventroy?.Invoke();
+            ToggleCursor();
+        }
+    }
+
+    void ToggleCursor()
+    {
+        bool toggle = Cursor.lockState == CursorLockMode.Locked;
+        Cursor.lockState = toggle? CursorLockMode.None :CursorLockMode.Locked;
         canLook = !toggle;
     }
 }

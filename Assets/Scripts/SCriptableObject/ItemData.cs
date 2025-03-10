@@ -14,10 +14,10 @@ public enum ConsumableType
     Health,
     Stamina
 }
-[Serializable]
+[System.Serializable]
 public class ItemDataConsumable
 {
-    public ItemType Type;
+    public ConsumableType type;
     public float value;
 }
 
@@ -28,7 +28,7 @@ public class ItemData : ScriptableObject
     public string displayName;
     public string description;
     public ItemType type;
-    //public Sprite icon;
+    public Sprite icon;
     public GameObject dropPrefab;
 
     [Header("Stacking")]

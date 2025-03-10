@@ -21,6 +21,13 @@ public class PlayerCondition : MonoBehaviour
         }
         
     }
+    public void HealStamina(float amount)
+    {
+        stamina.Add(amount);
+        CharacterManager.Instance.Player.controller.moveSpeed *= 3; // ¼Ó·ÂÀÌ 3¹è·Î »¡¶óÁü
+    }
+
+   
 
     public void Die()
     {
